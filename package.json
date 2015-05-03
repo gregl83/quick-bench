@@ -1,0 +1,39 @@
+{
+  "name": "quick-bench",
+  "version": "0.1.0",
+  "description": "JavaScript Quick Benchmark Tool",
+  "author": "Gregory Langlais",
+  "private": false,
+  "keywords": [
+    "quick-benchmark",
+    "benchmark",
+    "bench",
+    "quick",
+    "performance",
+    "measure"
+  ],
+  "main": "src/Benchmark",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gregl83/quick-bench.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gregl83/bench-mark/issues"
+  },
+  "homepage": "https://github.com/gregl83/quick-bench",
+  "scripts": {
+    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/",
+    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/"
+  },
+  "devDependencies": {
+    "mocha": "2.2.x",
+    "should": "5.2.x",
+    "mockery": "1.4.X",
+    "sinon": "1.14.x",
+    "coveralls": "2.11.x",
+    "istanbul": "0.3.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}
