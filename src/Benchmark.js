@@ -12,7 +12,7 @@ function Benchmark() {
 
   self._ended = false;
 
-  self._results = {elapsedTime: 0};
+  self._results = {elapsedTime: 0, events: {}};
 }
 
 
@@ -25,7 +25,7 @@ Benchmark.setResults = function() {
   self._results.elapsedTime = self._end - self._start;
 
   Object.keys(self._events).forEach(function(event) {
-    self._results[event] = {
+    self._results.events[event] = {
       total: self._events[event],
       perSecond: Math.floor(self._events[event] / (self._results.elapsedTime / 1000))
     };

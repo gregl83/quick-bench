@@ -78,12 +78,12 @@ describe('benchmark', function() {
       (results.elapsedTime).should.be.eql(end - start);
 
       (benchmark._events[events[0]]).should.be.eql(1);
-      (results[events[0]].total).should.be.eql(1);
-      (results[events[0]].perSecond).should.be.above(100);
+      (results.events[events[0]].total).should.be.eql(1);
+      (results.events[events[0]].perSecond).should.be.above(100);
 
       (benchmark._events[events[1]]).should.be.eql(2);
-      (results[events[1]].total).should.be.eql(2);
-      (results[events[1]].perSecond).should.be.above(100);
+      (results.events[events[1]].total).should.be.eql(2);
+      (results.events[events[1]].perSecond).should.be.above(100);
 
       done();
     }, 5);
