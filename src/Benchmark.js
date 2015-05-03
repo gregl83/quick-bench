@@ -1,21 +1,14 @@
 /**
  * JavaScript Benchmark Object
  *
- * @param {object} options
  * @constructor
  */
-function Benchmark(options) {
+function Benchmark() {
   var self = this;
 
   self._start = self._end = Date.now();
 
   self._events = {};
-
-  if ('undefined' !== options.events) {
-    options.events.forEach(function(event) {
-      self._events[event] = 0;
-    });
-  }
 
   self._ended = false;
 
@@ -42,19 +35,30 @@ Benchmark.setResults = function() {
 
 /**
  * Record Start Time
+ *
+ * @returns {number} start time ms
  */
 Benchmark.prototype.start = function() {
-  this._start = Date.now();
+  var self = this;
+
+  self._start = Date.now();
+
+  return self._start;
 };
 
 
 /**
  * Record End Time
+ *
+ * @returns {number} end time ms
  */
 Benchmark.prototype.end = function() {
-  this._end = Date.now();
+  var self = this;
 
-  Benchmark.setResults.call(this);
+  self._ended = true;
+  self._end = Date.now();
+
+  return self._end;
 };
 
 
@@ -65,17 +69,22 @@ Benchmark.prototype.end = function() {
  * @returns {number}
  */
 Benchmark.prototype.event = function(name) {
-  return ++this._events[name];
+  if ('number' === typeof this._events[name]) return ++this._events[name];
+  this._events[name] = 1;
 };
 
 
 /**
- * Get Benchmark Results
+ * Return Benchmark Results
+ *
+ * @returns {object} results
  */
-Benchmark.prototype.getResults = function() {
+Benchmark.prototype.results = function() {
   var self = this;
 
-  if (!self.ended) self.end();
+  if (!self._ended) self.end();
+
+  Benchmark.setResults.call(self);
 
   return this._results;
 };

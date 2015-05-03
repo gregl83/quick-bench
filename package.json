@@ -29,7 +29,6 @@
   "devDependencies": {
     "mocha": "2.2.x",
     "should": "5.2.x",
-    "mockery": "1.4.X",
     "sinon": "1.14.x",
     "coveralls": "2.11.x",
     "istanbul": "0.3.x"
