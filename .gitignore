@@ -14,3 +14,7 @@ coverage
 # NPM
 build/Release
 node_modules
+
+# Application Logs
+log/*
+*.log
