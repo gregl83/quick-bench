@@ -1,10 +1,10 @@
-var should = require('should');
-var sinon = require('sinon');
+var should = require('should')
+var sinon = require('sinon')
 
-var Benchmark = require('../');
+var Benchmark = require('../')
 
-describe('benchmark', function() {
-  it('new initialization', function(done) {
+describe('benchmark', () => {
+  it('new initialization', done => {
     var benchmark = new Benchmark();
 
     (benchmark._events).should.be.type('object');
@@ -13,40 +13,40 @@ describe('benchmark', function() {
 
     (benchmark._results.elapsedTime).should.be.zero;
 
-    done();
-  });
+    done()
+  })
 
-  it('start adds time', function(done) {
+  it('start adds time', done => {
     var benchmark = new Benchmark();
 
     var start = benchmark._start;
 
-    setTimeout(function() {
+    setTimeout(() => {
       var returned = benchmark.start();
 
       (returned).should.be.eql(benchmark._start);
       (benchmark._start).should.be.above(start);
 
-      done();
-    }, 5);
-  });
+      done()
+    }, 5)
+  })
 
-  it('end adds time', function(done) {
+  it('end adds time', done => {
     var benchmark = new Benchmark();
 
     benchmark.start();
 
-    setTimeout(function() {
+    setTimeout(() => {
       var returned = benchmark.end();
 
       (returned).should.be.eql(benchmark._end);
       (benchmark._end).should.be.above(benchmark._start);
 
-      done();
-    }, 5);
-  });
+      done()
+    }, 5)
+  })
 
-  it('end toggles ended flag', function(done) {
+  it('end toggles ended flag', done => {
     var benchmark = new Benchmark();
 
     benchmark.start();
@@ -55,11 +55,11 @@ describe('benchmark', function() {
 
     (benchmark._ended).should.be.true;
 
-    done();
-  });
+    done()
+  })
 
-  it('results returns event stats', function(done) {
-    var events = ['first', 'second'];
+  it('results returns event stats', done => {
+    var events = ['first', 'second']
 
     var benchmark = new Benchmark();
 
@@ -70,7 +70,7 @@ describe('benchmark', function() {
     benchmark.event(events[1]);
     benchmark.event(events[1]);
 
-    setTimeout(function() {
+    setTimeout(() => {
       var end = benchmark.end();
 
       var results = benchmark.results();
@@ -85,14 +85,14 @@ describe('benchmark', function() {
       (results.events[events[1]].total).should.be.eql(2);
       (results.events[events[1]].perSecond).should.be.above(100);
 
-      done();
-    }, 5);
-  });
+      done()
+    }, 5)
+  })
 
-  it('results when event flag false', function(done) {
+  it('results when event flag false', done => {
     var benchmark = new Benchmark();
 
-    var end = sinon.spy(benchmark, 'end');
+    var end = sinon.spy(benchmark, 'end')
 
     benchmark.start();
 
@@ -101,9 +101,9 @@ describe('benchmark', function() {
 
       (results).should.be.type('object');
 
-      sinon.assert.calledOnce(end);
+      sinon.assert.calledOnce(end)
 
-      done();
-    }, 5);
-  });
-});
+      done()
+    }, 5)
+  })
+})
