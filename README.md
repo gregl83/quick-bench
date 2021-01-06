@@ -66,4 +66,4 @@ That's it! As the module name implies this package is designed for quick benchma
 
 ## License
 
-MIT
+[MIT](LICENSE)
